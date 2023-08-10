@@ -37,10 +37,27 @@ data.groupby('target').mean()
 from scipy import stats
 a = data[data.target==0]
 b = data[data.target==1]
-c = data[data.target==2]
 A = a.drop(['target'], axis=1)
 B = b.drop(['target'], axis=1)
 stats.ttest_ind(A,B,equal_var=True)
 
 TT = stats.ttest_ind(A,B,equal_var=True)
+print(TT.pvalue)
+
+b = data[data.target==1]
+c = data[data.target==2]
+B = b.drop(['target'], axis=1)
+C = c.drop(['target'], axis=1)
+stats.ttest_ind(B,C,equal_var=True)
+
+TT = stats.ttest_ind(B,C,equal_var=True)
+print(TT.pvalue)
+
+a = data[data.target==0]
+c = data[data.target==2]
+A = a.drop(['target'], axis=1)
+C = c.drop(['target'], axis=1)
+stats.ttest_ind(A,C,equal_var=True)
+
+TT = stats.ttest_ind(A,C,equal_var=True)
 print(TT.pvalue)
